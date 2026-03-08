@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: semantic-cache-search
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persist the fastembed ONNX model cache so it isn't re-downloaded
+      # on every 'docker compose up'
+      - fastembed_cache:/root/.cache/fastembed
+
+      # Mount the data/ folder from your host so you can update the
+      # Colab-generated artefacts (faiss_index.bin, gmm_model.pkl, corpus.pkl)
+      # without rebuilding the image
+      - ./data:/app/data:ro
+
+    environment:
+      - PYTHONUNBUFFERED=1
+      - FASTEMBED_CACHE_DIR=/root/.cache/fastembed
+
+    restart: unless-stopped
+
+    healthcheck:
+      # Hits /docs (which always returns 200) to confirm the app is alive
+      test: [ "CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/docs')" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+volumes:
+  # Named volume so the fastembed model survives container restarts
+  fastembed_cache:

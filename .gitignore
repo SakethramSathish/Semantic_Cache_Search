@@ -1,0 +1,31 @@
+# ── Colab-generated binary artefacts ──────────────────────────────────────────
+# These are large files produced by the Colab notebook (Implementation.md).
+# Users generate them locally via Colab and place them in data/ — they should
+# NOT be committed to the repo.
+data/faiss_index.bin
+data/gmm_model.pkl
+data/corpus.pkl
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.Python
+
+# ── Virtual environments ──────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+
+# ── IDE / Editor ──────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+
+# ── OS noise ──────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── fastembed local model cache ───────────────────────────────────────────────
+.cache/

@@ -1,0 +1,30 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Development / IDE files
+.vscode/
+.idea/
+*.egg-info/
+
+# Git
+.git/
+.gitignore
+
+# Local scripts not needed at runtime
+data_pipeline.py
+analysis.py
+main.py
+semantic_cache.py
+Implementation.md
+
+# Model files that are NOT needed (the data/ folder IS copied intentionally)
+models/
